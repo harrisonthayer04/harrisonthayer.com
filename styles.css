@@ -70,9 +70,9 @@ body {
     padding: 10px 14px;
     margin: 10px auto;
     border-radius: 999px;
-    background: color-mix(in oklab, var(--bg) 65%, transparent);
-    border: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
-    box-shadow: 0 6px 16px color-mix(in oklab, var(--fg) 8%, transparent);
+    background: color-mix(in srgb, var(--bg) 65%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fg) 12%, transparent);
+    box-shadow: 0 6px 16px color-mix(in srgb, var(--fg) 8%, transparent);
     -webkit-backdrop-filter: blur(10px) saturate(140%);
     backdrop-filter: blur(10px) saturate(140%);
 }
@@ -90,7 +90,7 @@ body {
 }
 
 .nav-btn:hover, .nav-btn:focus-visible {
-    background: color-mix(in oklab, var(--fg) 8%, transparent);
+    background: color-mix(in srgb, var(--fg) 8%, transparent);
 }
 
 /* staggered fade-in for nav buttons */
@@ -145,6 +145,7 @@ section p {
     display: inline-block;
     white-space: normal;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: var(--fg);
 }
 
 .typing .letter {
@@ -207,5 +208,26 @@ section p {
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* Fallbacks for browsers that don't support color-mix */
+@supports not (color: color-mix(in srgb, black 50%, white 50%)) {
+    [data-theme="light"] .nav-content,
+    :root:not([data-theme="dark"]) .nav-content {
+        background: rgba(0,0,0,0.06);
+        border: 1px solid rgba(0,0,0,0.12);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    }
+    [data-theme="dark"] .nav-content {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+    }
+    [data-theme="light"] .nav-btn:hover,
+    :root:not([data-theme="dark"]) .nav-btn:hover,
+    [data-theme="light"] .nav-btn:focus-visible,
+    :root:not([data-theme="dark"]) .nav-btn:focus-visible { background: rgba(0,0,0,0.08); }
+    [data-theme="dark"] .nav-btn:hover,
+    [data-theme="dark"] .nav-btn:focus-visible { background: rgba(255,255,255,0.08); }
 }
 

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <script>(function(){try{var k='theme';var s=localStorage.getItem(k);if(s){document.documentElement.setAttribute('data-theme',s);} }catch(e){}})();</script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Coming Soon">
+</head>
+<body>
+    <nav class="top-nav" aria-label="Primary">
+        <div class="nav-content">
+            <a href="#projects" class="nav-btn">Projects</a>
+            <a href="#photos" class="nav-btn">Photos</a>
+            <a href="#connect" class="nav-btn">Connect</a>
+            <a href="#about" class="nav-btn">About</a>
+        </div>
+    </nav>
+    <main>
+        <h1>
+            <span id="typing" class="typing" aria-label="Harrison Thayer's personal portfolio"></span>
+        </h1>
+    </main>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-live="polite" aria-label="Toggle color theme"></button>
+    <script>
+    (function(){
+        var root = document.documentElement;
+        var btn = document.getElementById('theme-toggle');
+        if(!btn) return;
+        function label(theme){ return theme==='dark'?'Switch to light mode':'Switch to dark mode'; }
+        function current(){ return root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+        function set(theme){ root.setAttribute('data-theme', theme); try{localStorage.setItem('theme', theme);}catch(e){} btn.textContent = label(theme);}        
+        set(current());
+        btn.addEventListener('click', function(){ set(current()==='dark'?'light':'dark'); });
+    })();
+    </script>
+    <script>
+    (function () {
+        var el = document.getElementById('typing');
+        if (!el) return;
+        var text = "Harrison Thayer's personal portfolio";
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) {
+            el.textContent = text;
+            el.classList.remove('caret');
+            return;
+        }
+        var i = 0;
+        (function step(){
+            if (i <= text.length) {
+                el.textContent = text.slice(0, i);
+                i++;
+                setTimeout(step, 50);
+            } else {
+                // Keep caret visible at end after typing completes
+                el.classList.add('caret');
+            }
+        })();
+    })();
+    </script>
+</body>
+</html>

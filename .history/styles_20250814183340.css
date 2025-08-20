@@ -1,0 +1,201 @@
+:root {
+    --bg: #e8f6ff;
+    --fg: #062639;
+    --muted: #2a5d77;
+    --btn-bg: rgba(255,255,255,0.75);
+    --btn-fg: #062639;
+    --btn-border: rgba(6,38,57,0.15);
+    --btn-shadow: rgba(6,38,57,0.15);
+    --wave-1: rgba(32, 176, 233, 0.35);
+    --wave-2: rgba(32, 176, 233, 0.45);
+    --wave-3: rgba(32, 176, 233, 0.6);
+    --wave-4: rgba(6, 38, 57, 0.9);
+}
+
+[data-theme="dark"] {
+    --bg: #020a10;
+    --fg: #e6f7ff;
+    --muted: #9dcbe0;
+    --btn-bg: rgba(2,10,16,0.6);
+    --btn-fg: #e6f7ff;
+    --btn-border: rgba(160,214,235,0.2);
+    --btn-shadow: rgba(0,0,0,0.45);
+    --wave-1: rgba(3, 131, 181, 0.25);
+    --wave-2: rgba(3, 131, 181, 0.4);
+    --wave-3: rgba(3, 131, 181, 0.55);
+    --wave-4: rgba(1, 24, 37, 0.95);
+}
+
+html, body { height: 100%; }
+
+body {
+    margin: 0;
+    background: radial-gradient(1200px 60% at 50% 10%, rgba(255,255,255,0.6), transparent 60%) no-repeat, var(--bg);
+    color: var(--fg);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+.scene {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.center { text-align: center; padding: 2rem; }
+
+.hero h1 {
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    line-height: 1.1;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 0.02em;
+    text-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    animation: fadeUp 700ms ease-out both, floaty 9s ease-in-out 900ms infinite;
+}
+
+.hero p {
+    color: var(--muted);
+    opacity: 0.95;
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    max-width: 60ch;
+    margin: 0 auto 1.5rem auto;
+    animation: fadeUp 700ms ease-out 120ms both;
+}
+
+.cta { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+.btn {
+    appearance: none;
+    border: 1px solid var(--btn-border);
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 6px var(--btn-shadow);
+    text-decoration: none;
+    transition: transform 200ms ease, background 200ms ease;
+    will-change: transform;
+}
+
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+.btn.primary { background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.65)); }
+
+/* Waves */
+.waves {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 22vh;
+    min-height: 120px;
+    max-height: 240px;
+}
+
+.waves .parallax > use {
+    animation: move-forever 20s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+.waves .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 11s; }
+.waves .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 13s; }
+.waves .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 17s; }
+.waves .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 27s; }
+
+@keyframes move-forever {
+    0% { transform: translate3d(-90px,0,0); }
+    100% { transform: translate3d(85px,0,0); }
+}
+
+/* Bubbles */
+.bubbles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+.bubbles span {
+    position: absolute;
+    bottom: -10vh;
+    left: calc(var(--x) * 1%);
+    width: calc(var(--s) * 8px);
+    height: calc(var(--s) * 8px);
+    background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.95), rgba(255,255,255,0.3) 40%, rgba(255,255,255,0.05) 60%);
+    border-radius: 50%;
+    filter: blur(0.2px);
+    animation: rise calc(12s + var(--d) * 1s) linear infinite;
+    opacity: 0.9;
+}
+.bubbles span::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 12px rgba(255,255,255,0.35);
+}
+
+@keyframes rise {
+    0% { transform: translateY(0) translateX(0) scale(0.9); opacity: 0; }
+    10% { opacity: 1; }
+    50% { transform: translateY(-50vh) translateX(-6px) scale(1.05); }
+    100% { transform: translateY(-105vh) translateX(8px) scale(1.1); opacity: 0; }
+}
+
+/* Caustics overlay */
+.caustics {
+    position: absolute;
+    inset: -20% -10% 0 -10%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="3"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 0.9 0"/></feComponentTransfer><feGaussianBlur stdDeviation="0.5"/></filter><rect width="100%" height="100%" filter="url(%23f)" fill="white" opacity="0.9"/></svg>') center/cover repeat;
+    mix-blend-mode: overlay;
+    opacity: 0.08;
+    animation: drift 35s linear infinite;
+    transform: translateZ(0);
+}
+
+@keyframes drift {
+    0% { transform: translate3d(0,0,0) rotate(0deg) scale(1.05); }
+    50% { transform: translate3d(2%, -1%, 0) rotate(2deg) scale(1.06); }
+    100% { transform: translate3d(0,0,0) rotate(0deg) scale(1.05); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+
+#theme-toggle {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    appearance: none;
+    border: 1px solid var(--btn-border);
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    border-radius: 999px;
+    padding: 8px 12px 8px 36px;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 6px var(--btn-shadow);
+}
+
+#theme-toggle::before {
+    content: '☀️';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+[data-theme="dark"] #theme-toggle::before { content: '🌙'; }
+#theme-toggle::after { content: attr(aria-label); }

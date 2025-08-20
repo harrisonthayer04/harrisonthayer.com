@@ -1,0 +1,77 @@
+:root {
+    --bg: #ffffff;
+    --fg: #111111;
+    --muted: #000000;
+    --bg-image: url('background.jpg');
+    --bg-overlay: rgba(255, 255, 255, 0.35);
+}
+
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+    background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--fg);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    display: grid;
+    place-items: center;
+}
+
+.center {
+    text-align: center;
+    padding: 2rem;
+}
+
+.center h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 0.5rem 0;
+    animation: fadeUp 700ms ease-out both, breathe 6s ease-in-out 700ms infinite;
+    will-change: opacity, transform;
+}
+
+.center p {
+    color: var(--muted);
+    opacity: 0.95;
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    animation: fadeUp 700ms ease-out 100ms both, breathe 8s ease-in-out 800ms infinite;
+    will-change: opacity, transform;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes breathe {
+    0%, 100% { opacity: 0.96; }
+    50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+
+#theme-toggle {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    appearance: none;
+    border: 1px solid var(--btn-border);
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    border-radius: 999px;
+    padding: 8px 12px 8px 36px;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 6px var(--btn-shadow);
+}

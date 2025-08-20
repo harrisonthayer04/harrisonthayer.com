@@ -10,7 +10,7 @@
             var k='theme';
             var s=localStorage.getItem(k);
             if(s){document.documentElement.setAttribute('data-theme',s);} 
-            // Disable smooth scroll until after load to prevent initial auto-scroll
+            // Should Disable smooth scroll until after load to prevent initial auto-scroll
             document.documentElement.classList.add('no-smooth');
             window.addEventListener('load', function(){
                 // Only re-enable if there's no hash in URL; if there is, respect it
@@ -29,6 +29,7 @@
         <div class="nav-content">
             <a href="#about" class="nav-btn">About</a>
             <a href="#projects" class="nav-btn">Projects</a>
+            <a href="#blog" class="nav-btn">Blog</a>
             <a href="#photos" class="nav-btn">Photos</a>
             <a href="#connect" class="nav-btn">Connect</a>
             
@@ -41,10 +42,54 @@
     </main>
     <section id="about" aria-label="About">
         <h2>About</h2>
-        <p></p>
+        <p>Hello! My name is Harrison, and I am a Computer Science student at California State University, Fullerton.</p>
     </section>
     <section id="projects" aria-label="Projects">
-        <h2>Projects</h2>
+        <div class="section-content">
+            <h2>Projects</h2>
+            <p></p>
+            <div class="projects-container">
+                <div class="bubble project-bubble">
+                    <div class="project-content">
+                        <h3>Project One</h3>
+                        <p></p> <!-- Description -->
+                    </div>
+                </div>
+                <div class="bubble project-bubble">
+                    <div class="project-content">
+                        <h3>Project Two</h3>
+                        <p></p> <!-- Description -->
+                    </div>
+                </div>
+                <div class="bubble project-bubble">
+                    <div class="project-content">
+                        <h3>Project Three</h3>
+                        <p></p> <!-- Description -->
+                    </div>
+                </div>
+                <div class="bubble project-bubble">
+                    <div class="project-content">
+                        <h3>Project Four</h3>
+                        <p></p> <!-- Description -->
+                    </div>
+                </div>
+                <div class="bubble project-bubble">
+                    <div class="project-content">
+                        <h3>Project Five</h3>
+                        <p></p> <!-- Description -->
+                    </div>
+                </div>
+                <div class="bubble project-bubble">
+                    <div class="project-content">
+                        <h3>Project Six</h3>
+                        <p></p> <!-- Description -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="blog" aria-label="Blog">
+        <h2>Blog</h2>
         <p></p>
     </section>
     <section id="photos" aria-label="Photos">
@@ -53,7 +98,35 @@
     </section>
     <section id="connect" aria-label="Connect">
         <h2>Connect</h2>
-        <p></p>
+        <form class="connect-layout contact-form" action="#" method="post" novalidate>
+            <div class="social-links">
+                <a class="social-link" href="https://github.com/harrisonthayer04" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub</a>
+                <a class="social-link" href="https://www.linkedin.com/in/harrison-thayer/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">LinkedIn</a>
+            </div>
+            <!-- I plan to add a contact form here, but I'm not sure if I want to do it yet. -->
+            <!--
+            <div class="field">
+                <label for="first-name">First name</label>
+                <input id="first-name" name="firstName" type="text" autocomplete="given-name" required>
+            </div>
+
+            <div class="field field-last-name">
+                <label for="last-name">Last name</label>
+                <input id="last-name" name="lastName" type="text" autocomplete="family-name" required>
+            </div>
+
+            <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+
+            <div class="field field-message">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button class="submit-btn" type="submit">Send</button>
+            -->
+        </form>
     </section>
     <button id="theme-toggle" class="theme-toggle warpable" type="button" aria-live="polite" aria-label="Toggle color theme"></button>
     <script>

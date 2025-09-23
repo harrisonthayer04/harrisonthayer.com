@@ -411,19 +411,25 @@ section p {
 /* Theme toggle button */
 .theme-toggle {
     position: fixed;
-    bottom: 12px;
-    left: 50%;
-    transform: translate(-50%, 6px) scale(var(--sx, 1), var(--sy, 1));
-    padding: 10px 14px;
-    border-radius: 999px;
+    top: 20px;
+    right: 20px;
+    transform: scale(var(--sx, 1), var(--sy, 1));
+    padding: 0;
+    border-radius: 50%;
     border: 1px solid currentColor;
     background: transparent;
     color: var(--fg);
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     opacity: 0;
     animation: fadeInUp 560ms ease-out 260ms forwards;
     transition: transform 160ms ease-out;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
 }
 
 .theme-toggle:focus-visible {
@@ -432,8 +438,19 @@ section p {
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(-6px) scale(0.8); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Responsive design for theme toggle */
+@media (max-width: 768px) {
+    .theme-toggle {
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
 }
 
 /* Fallbacks for browsers that don't support color-mix */

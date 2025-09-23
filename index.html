@@ -59,7 +59,7 @@
                 <div class="bubble project-bubble">
                     <div class="project-content">
                         <h3>zSTFLibrary</h3>
-                        <p></p> <!-- Description -->
+                        <p></p> <!--     Description -->
                         <a href="https://github.com/harrisonthayer04/zSTFLibrary" target="_blank" rel="noopener noreferrer" class="github-btn">GitHub</a>
                     </div>
                 </div>
@@ -137,9 +137,10 @@
         var root = document.documentElement;
         var btn = document.getElementById('theme-toggle');
         if(!btn) return;
+        function icon(theme){ return theme==='dark'?'☀️':'🌙'; }
         function label(theme){ return theme==='dark'?'Switch to light mode':'Switch to dark mode'; }
         function current(){ return root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
-        function set(theme){ root.setAttribute('data-theme', theme); try{localStorage.setItem('theme', theme);}catch(e){} btn.textContent = label(theme);}        
+        function set(theme){ root.setAttribute('data-theme', theme); try{localStorage.setItem('theme', theme);}catch(e){} btn.textContent = icon(theme); btn.setAttribute('aria-label', label(theme));}
         set(current());
         btn.addEventListener('click', function(){ set(current()==='dark'?'light':'dark'); });
     })();
